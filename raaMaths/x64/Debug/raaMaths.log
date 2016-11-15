@@ -1,4 +1,0 @@
-﻿  raaVector.cpp
-c:\users\iss536\documents\teaching\2016-2017\computer graphics\assignment\assignment 1\assignment 1 pack\computergraphics - 2016 - assignment1-template\raamaths\raavector.cpp(89): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-c:\users\iss536\documents\teaching\2016-2017\computer graphics\assignment\assignment 1\assignment 1 pack\computergraphics - 2016 - assignment1-template\raamaths\raavector.cpp(97): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  raaMaths.vcxproj -> C:\Users\iss536\Documents\Teaching\2016-2017\Computer Graphics\assignment\Assignment 1\Assignment 1 Pack\ComputerGraphics - 2016 - Assignment1-template\x64\Debug\raaMaths.lib
