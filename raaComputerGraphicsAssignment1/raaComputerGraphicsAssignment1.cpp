@@ -88,7 +88,7 @@ void removeFromList(node *nodeToDelete);
 void traverseList(node *head);
 void printNode(node *n);
 
-int countElements(node *head);
+int countElements();
 
 
 node* getAt(int iPos);
@@ -144,6 +144,21 @@ void display()
 	//glutSolidSphere(20.0f, 10, 10);
 	glPopMatrix();
 
+
+	for (int i = 0; i < countElements(); i++)
+	{
+		node *n = getAt(i);
+		if (n != head)
+		{
+			glPushMatrix();
+			glTranslatef(n->postion.x, n->postion.y, n->postion.z);
+			drawSphere(n->radius, 10, 10);
+			glPopMatrix();
+		}
+
+	}
+
+
 	glPopAttrib();
 	// end placeholder
 
@@ -165,6 +180,18 @@ void idle()
 	head->postion.x = head->postion.x + head->velocity.x;
 	head->postion.y = head->postion.y + head->velocity.y;
 	head->postion.z = head->postion.z + head->velocity.z;
+
+	for (int i = 0; i < countElements(); i++)
+	{
+		node *n = getAt(i);
+		if(n != head)
+		{
+			n->postion.x = n->postion.x + n->velocity.x;
+			n->postion.y = n->postion.y + n->velocity.y;
+			n->postion.z = n->postion.z + n->velocity.z;
+		}
+		
+	}
 
 
 	glutPostRedisplay();
@@ -260,11 +287,13 @@ void myInit()
 
 	initMaths();
 
-	for (unsigned int i = 0; i<csg_uiNumSpheres; i++)
+	for (unsigned int i = 0; i < csg_uiNumSpheres; i++)
 	{
-			node* nElement = createElement(20, 20, createVector(randFloat(-600.0f, 600.0f), randFloat(-600.0f, 600.0f), randFloat(-600.0f, 600.0f)), createVector(0.0f, 0.0f, 1.0f));
-			addToEndOfList(nElement);
+		node* nElement = createElement(20, 20, createVector(randFloat(-600.0f, 600.0f), randFloat(-600.0f, 600.0f), randFloat(-600.0f, 600.0f)), createVector(0.0f, 0.0f, 1.0f));
+		addToEndOfList(nElement);
 	}
+
+	printf("Elements: %i", countElements());
 
 	// colour between 1 and 255 must be divded by /255
 	// 170 becomes 0.6862745098
@@ -384,14 +413,14 @@ node* getAt(int iPos)
 }
 
 
-int countElements(node *head)
+int countElements()
 {
 	int total = 0;
-	node *current;
-	current = head;
+	node *current = head;
 	while (current != 0)
 	{
 		total++;
+		current = current->nNext;
 	}
 
 	return total;
